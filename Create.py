@@ -7,8 +7,9 @@ import sys
 username = 'USERNAME HERE'
 api_key = 'API KEY HERE'
 
+
 def makerepo(reponame):
-    global username,api_key
+    global username, api_key
     req = requests.post('https://api.github.com/user/repos', data=json.dumps({'name': reponame, 'private': 'true'}),
                         auth=(username, api_key))
     if req.status_code == 200 or req.status_code == 201:
@@ -21,11 +22,30 @@ def makerepo(reponame):
 
 def localgit(reponame):
     global username
-    homedir = os.environ['HOME'].split('/')[-1]
-    if not os.path.exists(f'/Users/{homedir}/PythonProjects'):
-        os.mkdir(f'/Users/{homedir}/PythonProjects')
-    localrepo = f'/Users/{homedir}/PythonProjects/{reponame}'
-    os.mkdir(localrepo)
+    if sys.platform == 'darwin':
+        print('System is Mac')
+        homedir = os.path.expanduser('~').split('/')[-1]
+        if not os.path.exists(f'/Users/{homedir}/PythonProjects'):
+            os.mkdir(f'/Users/{homedir}/PythonProjects')
+        localrepo = f'/Users/{homedir}/PythonProjects/{reponame}'
+        os.mkdir(localrepo)
+    elif sys.platform == 'linux':
+        print('System is Linux')
+        homedir = os.path.expanduser('~').split('/')[-1]
+        if not os.path.exists(f'/home/{homedir}/PythonProjects'):
+            os.mkdir(f'/home/{homedir}/PythonProjects')
+        localrepo = f'/home/{homedir}/PythonProjects/{reponame}'
+        os.mkdir(localrepo)
+    elif sys.platform == 'win32':
+        print('System is Windows')
+        homedir = os.path.expanduser('~').split('/')[-1]
+        if not os.path.exists(f'C/Users/{homedir}/PythonProjects'):
+            os.mkdir(f'C/Users/{homedir}/PythonProjects')
+        localrepo = f'C/Users/{homedir}/PythonProjects/{reponame}'
+        os.mkdir(localrepo)
+    else:
+        raise Exception('Could not recognise local OS.')
+
     subprocess.check_call(['git', 'init'], cwd=localrepo)
     with open(f'{localrepo}/README.md', 'w') as f:
         f.close()
