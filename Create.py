@@ -39,9 +39,9 @@ def localgit(reponame):
     elif sys.platform == 'win32':
         print('System is Windows')
         homedir = os.path.expanduser('~').split('/')[-1]
-        if not os.path.exists(f'C/Users/{homedir}/PythonProjects'):
-            os.mkdir(f'C/Users/{homedir}/PythonProjects')
-        localrepo = f'C/Users/{homedir}/PythonProjects/{reponame}'
+        if not os.path.exists(f'C:/Users/{homedir}/PythonProjects'):
+            os.mkdir(f'C:/Users/{homedir}/PythonProjects')
+        localrepo = f'C:/Users/{homedir}/PythonProjects/{reponame}'
         os.mkdir(localrepo)
     else:
         raise Exception('Could not recognise local OS.')
