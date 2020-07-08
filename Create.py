@@ -25,23 +25,23 @@ def localgit(reponame):
     if sys.platform == 'darwin':
         print('System is Mac')
         homedir = os.path.expanduser('~').split('/')[-1]
-        if not os.path.exists(f'/Users/{homedir}/PythonProjects'):
-            os.mkdir(f'/Users/{homedir}/PythonProjects')
-        localrepo = f'/Users/{homedir}/PythonProjects/{reponame}'
+        if not os.path.exists(f'/Users/{homedir}/Code Projects'):
+            os.mkdir(f'/Users/{homedir}/Code Projects')
+        localrepo = f'/Users/{homedir}/Code Projects/{reponame}'
         os.mkdir(localrepo)
     elif sys.platform == 'linux':
         print('System is Linux')
         homedir = os.path.expanduser('~').split('/')[-1]
-        if not os.path.exists(f'/home/{homedir}/PythonProjects'):
-            os.mkdir(f'/home/{homedir}/PythonProjects')
-        localrepo = f'/home/{homedir}/PythonProjects/{reponame}'
+        if not os.path.exists(f'/home/{homedir}/Code Projects'):
+            os.mkdir(f'/home/{homedir}/Code Projects')
+        localrepo = f'/home/{homedir}/Code Projects/{reponame}'
         os.mkdir(localrepo)
     elif sys.platform == 'win32':
         print('System is Windows')
         homedir = os.path.expanduser('~').split('/')[-1]
-        if not os.path.exists(f'C:/Users/{homedir}/PythonProjects'):
-            os.mkdir(f'C:/Users/{homedir}/PythonProjects')
-        localrepo = f'C:/Users/{homedir}/PythonProjects/{reponame}'
+        if not os.path.exists(f'C:/Users/{homedir}/Code Projects'):
+            os.mkdir(f'C:/Users/{homedir}/Code Projects')
+        localrepo = f'C:/Users/{homedir}/Code Projects/{reponame}'
         os.mkdir(localrepo)
     else:
         raise Exception('Could not recognise local OS.')
